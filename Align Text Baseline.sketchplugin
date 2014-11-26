@@ -1,0 +1,30 @@
+var textLayer;
+var bounding;
+
+for (var i=0; i<selection.count(); i++) {
+	var layer = selection[i];
+
+	if ([layer class] == MSTextLayer) {
+		textLayer = layer;
+	} else {
+		if (bounding) {
+			bounding = [MSRect rectWithUnionOfRects:Array([layer frame], bounding)];
+		} else {
+			bounding = [layer frame];
+		}
+	}
+}
+
+if (textLayer && bounding) {
+	var font = [textLayer font];
+
+	if ([textLayer baseLineHeight] == 0) {
+		[textLayer setLineSpacing: [textLayer defaultLineHeight]+1];
+	}
+
+	var baseLineHeight = [textLayer baseLineHeight];
+	var mid = [bounding y] + [bounding height]/2;
+	var y = mid - baseLineHeight - [font descender] + [font capHeight]/2;
+
+	[[textLayer frame] setY:y];
+}
