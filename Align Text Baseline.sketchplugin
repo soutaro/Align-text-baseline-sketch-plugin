@@ -29,4 +29,23 @@ if (bounding) {
 
 		[[textLayer frame] setY:y];
 	}
+} else {
+	var layer = textLayers[0]
+	if (layer) {
+		var font = [layer font];
+		var baseline = [[layer frame] y] + [layer baseLineHeight] + [font descender];
+
+		for (var i = 0; i < textLayers.length; i++) {
+			var textLayer = textLayers[i];
+			var font = [textLayer font];
+
+			[textLayer setLineSpacing:[font ascender] - [font descender]];
+
+			var baseLineHeight = [textLayer baseLineHeight];
+			var y = baseline - baseLineHeight - [font descender];
+
+			[[textLayer frame] setY:y];
+		}
+	}
 }
+
