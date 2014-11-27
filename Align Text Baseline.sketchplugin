@@ -1,11 +1,11 @@
-var textLayer;
+var textLayers = [];
 var bounding;
 
 for (var i=0; i<selection.count(); i++) {
 	var layer = selection[i];
 
 	if ([layer class] == MSTextLayer) {
-		textLayer = layer;
+		textLayers.push(layer);
 	} else {
 		if (bounding) {
 			bounding = [MSRect rectWithUnionOfRects:Array([layer frame], bounding)];
@@ -15,14 +15,18 @@ for (var i=0; i<selection.count(); i++) {
 	}
 }
 
-if (textLayer && bounding) {
-	var font = [textLayer font];
+if (bounding) {
+	var targetLine = [bounding y] + [bounding height]/2;
 
-	[textLayer setLineSpacing:[font ascender] - [font descender]];
+	for (var i = 0; i < textLayers.length; i++) {
+		var textLayer = textLayers[i];
+		var font = [textLayer font];
 
-	var baseLineHeight = [textLayer baseLineHeight];
-	var mid = [bounding y] + [bounding height]/2;
-	var y = mid - baseLineHeight - [font descender] + [font capHeight]/2;
+		[textLayer setLineSpacing:[font ascender] - [font descender]];
 
-	[[textLayer frame] setY:y];
+		var baseLineHeight = [textLayer baseLineHeight];
+		var y = targetLine - baseLineHeight - [font descender] + [font capHeight]/2;
+
+		[[textLayer frame] setY:y];
+	}
 }
