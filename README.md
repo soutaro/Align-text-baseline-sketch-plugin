@@ -2,7 +2,13 @@
 
 This plugin allows your text layers to be aligned vertically based on its font's baseline and cap height, not based on its frame.
 
-The built in *Align Vertically* command works really bad for some fonts including most CJK fonts.
+The built in *Align Vertically* command does not work as we expect for some of CJK fonts including standard Hiragino Kaku Gothic.
+
+The plugin provides three functionalities to help you working with text layers of CJK fonts.
+
+* Place text layers in the middle
+* Align text layers by baseline
+* Add a rectangle surrouding text in the given text layer, which can be used as a mask
 
 ## Example
 
