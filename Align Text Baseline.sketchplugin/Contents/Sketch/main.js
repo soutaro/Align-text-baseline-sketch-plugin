@@ -120,7 +120,7 @@ function maskTextLayer(doc, textLayer) {
   var descender = [font descender];
   var height = Math.floor(ascender - descender + 0.5);
 
-  var parentFrame = findParentFrame(textLayer);
+  var parentFrame = [textLayer parentGroup];
   var maskLayer = [parentFrame addLayerOfType:"rectangle"];
   [maskLayer setName:"Shape for mask"];
 
@@ -131,20 +131,6 @@ function maskTextLayer(doc, textLayer) {
   [maskFrame setHeight:height];
 
   [maskLayer select:true byExpandingSelection:true];
-}
-
-function findParentFrame(layer) {
-  var parent = [layer parentGroup];
-
-  if (parent && [parent class] == MSArtboardGroup) {
-    return parent;
-  }
-
-  if (parent && [parent class] == MSPage) {
-    return parent;
-  }
-
-  return findParentFrame(parent);
 }
 
 function alert(message) {
