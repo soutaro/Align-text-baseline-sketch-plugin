@@ -1,0 +1,32 @@
+{
+  "name": "Align Text Baseline",
+  "description": "Align text layers based on their baselines",
+  "author": "Soutaro Matsumoto",
+  "homepage": "http://github.com/soutaro/align-text-baseline",
+  "version": 1.0,
+  "identifier": "com.soutaro.align-text-baseline",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Align Text",
+      "identifier": "align-text",
+      "shortcut": "ctrl shift t",
+      "script": "main.js",
+      "handler": "alignText"
+    },
+    {
+      "name": "Insert Text Surrounding Layer",
+      "identifier": "mask-text-layer",
+      "shortcut": "ctrl shift m",
+      "script": "main.js",
+      "handler": "maskTextLayers"
+    },
+  ],
+  "menu": {
+    "items": [
+      "align-text",
+      "mask-text-layer"
+    ]
+  }
+}
