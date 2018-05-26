@@ -21,7 +21,7 @@
       "shortcut": "ctrl shift m",
       "script": "main.js",
       "handler": "maskTextLayers"
-    },
+    }
   ],
   "menu": {
     "items": [
